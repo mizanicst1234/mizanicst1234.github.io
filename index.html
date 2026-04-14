@@ -111,6 +111,33 @@
         transform: translateY(0);
       }
     }
+
+    .cv-btn {
+      transition: all 0.3s ease;
+      font-weight: 600;
+      border-radius: 30px;
+      padding: 10px 18px;
+    }
+
+    .cv-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .cv-btn:active {
+      transform: scale(0.95);
+    }
+
+    .cv-btn i {
+      margin-right: 6px;
+    }
+
+    /* Glass modal effect */
+    .glass-modal {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+    }
   </style>
 
   <!-- Structured Data (SEO Boost - Google Rich Results) -->
@@ -450,10 +477,65 @@
     <!-- ======= Resume Section ======= -->
     <section id="resume" class="resume">
       <h3 style="text-align: center;">
-        <strong data-i18n="resume_text">For View & Download PDF Resume Click Here...</strong> <br><br> <a
-          href="assets/cv/Mizanur_RahmanCV.pdf" class="btn btn-primary"><strong data-i18n="resume_btn">View
-            Resume</strong></a>
+
+        <strong data-i18n="resume_text">
+          For View & Download PDF Resume Click Here...
+        </strong>
+
+        <br><br>
+
+        <!-- VIEW -->
+        <button class="btn btn-primary cv-btn me-2" onclick="openCV('view')">
+          <i class="bi bi-eye"></i>
+          <span data-i18n="resume_view">View Resume</span>
+        </button>
+
+        <!-- DOWNLOAD -->
+        <button class="btn btn-secondary cv-btn" onclick="openCV('download')">
+          <i class="bi bi-download"></i>
+          <span data-i18n="resume_download">Download Resume</span>
+        </button>
+
       </h3>
+
+      <div class="modal fade" id="cvPasswordModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content glass-modal">
+
+            <div class="modal-header">
+              <h5 class="modal-title" data-i18n="enter_password_title">
+                Enter Password
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+              <p class="text-muted" data-i18n="enter_password_desc">
+                Please enter password to access CV
+              </p>
+
+              <input type="password" id="cvPasswordInput" class="form-control" placeholder="Enter password">
+
+              <small id="cvError" class="text-danger d-none mt-2">
+                Wrong password!
+              </small>
+
+            </div>
+
+            <div class="modal-footer">
+              <button class="btn btn-secondary" data-bs-dismiss="modal">
+                Close
+              </button>
+
+              <button class="btn btn-primary" onclick="verifyCV()">
+                Unlock
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
 
       <!-- <div class="container">
 
@@ -885,11 +967,13 @@
 
         resume_text:
           "For View & Download PDF Resume Click Here... <br><br>",
-        resume_btn: "View Resume",
-
+        resume_view: "View Resume",
         projects_title: "Projects",
         projects_text: "Check My Projects",
-        hero_prefix: "I'm a"
+        hero_prefix: "I'm a",
+        resume_download: "Download Resume",
+        enter_password_title: "Enter Password",
+        enter_password_desc: "Please enter password to access CV"
       },
 
       bn: {
@@ -917,11 +1001,13 @@
 
         resume_text:
           "আমার সিভি দেখতে বা ডাউনলোড করতে নিচে ক্লিক করুন... <br><br>",
-        resume_btn: "রিজিউম দেখুন",
-
+        resume_view: "সিভি দেখুন",
         projects_title: "প্রজেক্টসমূহ",
         projects_text: "আমার প্রজেক্টগুলো দেখুন",
-        hero_prefix: "আমি একজন"
+        hero_prefix: "আমি একজন",
+        resume_download: "ডাউনলোড করুন",
+        enter_password_title: "পাসওয়ার্ড দিন",
+        enter_password_desc: "সিভি দেখতে পাসওয়ার্ড দিন"
       }
     };
 
@@ -984,6 +1070,57 @@
     });
   </script>
 
+
+
+  <script>
+    const CV_PASS = "download";
+
+    let currentAction = null;
+
+    function openCV(action) {
+      currentAction = action;
+
+      document.getElementById("cvPasswordInput").value = "";
+      document.getElementById("cvError").classList.add("d-none");
+
+      const modal = new bootstrap.Modal(document.getElementById('cvPasswordModal'));
+      modal.show();
+    }
+
+    function verifyCV() {
+      const input = document.getElementById("cvPasswordInput").value;
+
+      if (input === CV_PASS) {
+        document.getElementById("cvError").classList.add("d-none");
+
+        const modalEl = document.getElementById('cvPasswordModal');
+        const modal = bootstrap.Modal.getInstance(modalEl);
+        modal.hide();
+
+        openFile(currentAction);
+
+      } else {
+        document.getElementById("cvError").classList.remove("d-none");
+      }
+    }
+
+    function openFile(action) {
+      const url = "assets/cv/Mizanur_RahmanCV.pdf";
+
+      if (action === "view") {
+        window.open(url, "_blank");
+      }
+
+      if (action === "download") {
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "Mizanur_RahmanCV.pdf";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+    }
+  </script>
 </body>
 
 </html>
