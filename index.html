@@ -7,13 +7,16 @@
 
   <title>Mizanur Rahman | Full Stack Laravel Developer | ERP & DevOps Engineer</title>
   <meta name="google-site-verification" content="6QwJAamOtkp12otyJ0-6LuxhhW7MCwJKzmpXK0yvoWs" />
+  <meta name="language" content="en">
+  <meta name="distribution" content="global">
 
   <!-- SEO Meta -->
+  <meta name="robots" content="index, follow">
   <meta name="author" content="Mizanur Rahman">
   <meta name="description"
     content="Mizanur Rahman is a Full Stack Developer from Bangladesh specializing in Laravel, PHP, MySQL, ERP systems, React, and DevOps (Linux, CI/CD, Deployment).">
   <meta name="keywords"
-    content="Mizanur Rahman, Dev Mir, devmir, Mizan Icst, mizan icst, Mir Mizan, Mizan Rahman, Full Stack Developer Bangladesh, Laravel Developer Bangladesh, ERP Developer, PHP Developer, React Developer, DevOps Engineer, Full Stack Developer Bangladesh, Laravel Developer Bangladesh, PHP Developer Bangladesh, React Developer Bangladesh, DevOps Engineer Bangladesh, Web Developer Bangladesh">
+    content="Mizanur Rahman, Dev Mir, devmir, Mir Mizan, Mizan Rahman, Full Stack Developer Bangladesh, Laravel Developer Bangladesh, ERP Developer, PHP Developer, React Developer, DevOps Engineer, PHP Developer Bangladesh, React Developer Bangladesh, DevOps Engineer Bangladesh, Web Developer Bangladesh">
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://mizanicst1234.github.io">
@@ -22,14 +25,14 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Mizanur Rahman | Full Stack Developer">
   <meta property="og:description" content="Laravel, ERP Systems, React & DevOps Engineer from Bangladesh">
-  <meta property="og:image" content="assets/img/profile-img.jpg">
+  <meta property="og:image" content="https://mizanicst1234.github.io/assets/img/profile-img.jpg">
   <meta property="og:url" content="https://mizanicst1234.github.io">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Mizanur Rahman | Full Stack Developer">
   <meta name="twitter:description" content="Laravel, ERP Systems, React & DevOps Engineer from Bangladesh">
-  <meta name="twitter:image" content="assets/img/profile-img.jpg">
+  <meta name="twitter:image" content="https://mizanicst1234.github.io/assets/img/profile-img.jpg">
 
   <!-- Theme Color -->
   <meta name="theme-color" content="#149ddd">
@@ -37,6 +40,7 @@
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="icon" href="/assets/img/favicon.png" type="image/png">
 
   <!-- Google Fonts -->
   <link
@@ -54,13 +58,68 @@
   <!-- Main CSS -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <style>
+    /* ===== Language Button (Top Header Style) ===== */
+    #langToggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+
+      padding: 8px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 25px;
+
+      background: rgba(20, 157, 221, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+
+      cursor: pointer;
+
+      transition: all 0.3s ease;
+    }
+
+    /* Hover effect */
+    #langToggle:hover {
+      background: #149ddd;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Click animation */
+    #langToggle:active {
+      transform: scale(0.95);
+    }
+
+    /* Smooth text change animation */
+    .lang-fade {
+      animation: fadeText 0.25s ease-in-out;
+    }
+
+    @keyframes fadeText {
+      0% {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+
   <!-- Structured Data (SEO Boost - Google Rich Results) -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Mizanur Rahman",
-  "alternateName": ["Dev Mir", "Mir Mizan", "devmir, "mizan icst"],
+  "alternateName": ["Dev Mir", "Mir Mizan", "devmir"],
   "url": "https://mizanicst1234.github.io",
   "jobTitle": "Full Stack Developer",
   "description": "Laravel, ERP and DevOps Developer from Bangladesh",
@@ -74,6 +133,9 @@
 </head>
 
 <body>
+
+  <!-- ===== Language Button ===== -->
+  <button id="langToggle" onclick="toggleLanguage()">বাংলা</button>
 
   <!-- ======= Mobile nav toggle button ======= -->
   <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
@@ -142,9 +204,12 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="hero-container" data-aos="fade-in">
-      <h1>Mizanur Rahman</h1>
-      <p>I'm a <span class="typed" data-typed-items="Full Stack Developer, Laravel Developer, DevOps Enthusiast">
-        </span></p>
+      <h1 data-i18n="name">Mizanur Rahman</h1>
+
+      <p>
+        <span data-i18n="hero_prefix">I'm a</span>
+        <span id="typed-text"></span>
+      </p>
     </div>
   </section><!-- End Hero -->
 
@@ -155,8 +220,9 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>About</h2>
-          <p>
+          <h2 data-i18n="about_title">About</h2>
+
+          <p data-i18n="about_text">
             Hi, I'm Mizanur Rahman — a Full Stack Developer specializing in Laravel and modern web technologies.
             I build scalable ERP systems and business applications with clean and efficient architecture.
 
@@ -290,8 +356,9 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Skills</h2>
-          <p>
+          <h2 data-i18n="skills_title">Skills</h2>
+
+          <p data-i18n="skills_text">
             I specialize in building full-stack web applications using modern technologies.
             My experience includes developing scalable ERP systems with Laravel, creating responsive
             user interfaces with React, and working with DevOps tools for deployment, server management,
@@ -383,8 +450,9 @@
     <!-- ======= Resume Section ======= -->
     <section id="resume" class="resume">
       <h3 style="text-align: center;">
-        For View & Download PDF Resume Click Here... <br><br> <a href="assets/cv/Mizanur_RahmanCV.pdf"
-          class="btn btn-primary">View Resume</a>
+        <strong data-i18n="resume_text">For View & Download PDF Resume Click Here...</strong> <br><br> <a
+          href="assets/cv/Mizanur_RahmanCV.pdf" class="btn btn-primary"><strong data-i18n="resume_btn">View
+            Resume</strong></a>
       </h3>
 
       <!-- <div class="container">
@@ -456,8 +524,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Projects</h2>
-        <p>Check My Projects</p>
+        <h2 data-i18n="projects_title">Projects</h2>
+        <p data-i18n="projects_text">Check My Projects</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -681,8 +749,10 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Contact</h2>
-          <p>Contact with me, if you need to know any information about me</p>
+          <h2 data-i18n="contact_title">Contact</h2>
+          <p data-i18n="contact_desc">
+            Contact with me, if you need to know any information about me
+          </p>
         </div>
 
         <div class="row" data-aos="fade-in">
@@ -717,7 +787,9 @@
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
             <form action="forms/contact.php" method="post" role="form" class="php-email-form">
               <div class="row">
-                <p>You can contact me via email or social media for collaboration or job opportunities.</p>
+                <p data-i18n="contact_note">
+                  You can contact me via email or social media for collaboration or job opportunities.
+                </p>
                 <div class="form-group col-md-6">
                   <label for="name">Your Name</label>
                   <input type="text" name="name" class="form-control" id="name" required>
@@ -783,6 +855,134 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    let currentLang = "en";
+    let typedInstance = null;
+
+    const translations = {
+      en: {
+        name: "Mizanur Rahman",
+
+        hero_roles: [
+          "Full Stack Developer",
+          "Laravel Developer",
+          "DevOps Enthusiast"
+        ],
+
+        about_title: "About",
+        about_text:
+          "Hi, I'm Mizanur Rahman — a Full Stack Developer specializing in Laravel and modern web technologies. I build scalable ERP systems and business applications with clean and efficient architecture. Recently, I’ve been expanding into DevOps, working with deployment, server management, and CI/CD pipelines to improve application scalability and performance.",
+
+        skills_title: "Skills",
+        skills_text:
+          "I specialize in building full-stack web applications using modern technologies. My experience includes developing scalable ERP systems with Laravel, creating responsive user interfaces with React, and working with DevOps tools for deployment, server management, and continuous integration.",
+
+        contact_title: "Contact",
+        contact_desc: "Contact with me, if you need to know any information about me",
+        contact_note:
+          "You can contact me via email or social media for collaboration or job opportunities.",
+
+        resume_text:
+          "For View & Download PDF Resume Click Here... <br><br>",
+        resume_btn: "View Resume",
+
+        projects_title: "Projects",
+        projects_text: "Check My Projects",
+        hero_prefix: "I'm a"
+      },
+
+      bn: {
+        name: "মিজানুর রহমান",
+
+        hero_roles: [
+          "ফুল স্ট্যাক ডেভেলপার",
+          "Laravel ডেভেলপার",
+          "DevOps ইঞ্জিনিয়ার"
+        ],
+
+        about_title: "আমার সম্পর্কে",
+        about_text:
+          "আমি মিজানুর রহমান — একজন ফুল স্ট্যাক ডেভেলপার, Laravel এবং আধুনিক ওয়েব প্রযুক্তিতে বিশেষজ্ঞ। আমি পরিষ্কার এবং কার্যকর স্থাপত্য সহ স্কেলযোগ্য ERP সিস্টেম এবং ব্যবসায়িক অ্যাপ্লিকেশন তৈরি করি। সম্প্রতি, আমি DevOps-এ কাজ করছি, যেখানে ডিপ্লয়মেন্ট, সার্ভার ম্যানেজমেন্ট এবং CI/CD পাইপলাইনের মাধ্যমে অ্যাপ্লিকেশনের স্কেলযোগ্যতা এবং পারফরম্যান্স উন্নত করছি।",
+
+        skills_title: "দক্ষতা",
+        skills_text:
+          "আমি আধুনিক প্রযুক্তি ব্যবহার করে ফুল-স্ট্যাক ওয়েব অ্যাপ্লিকেশন তৈরি করতে বিশেষজ্ঞ। আমার অভিজ্ঞতার মধ্যে রয়েছে Laravel দিয়ে স্কেলযোগ্য ERP সিস্টেম তৈরি, React দিয়ে রেসপনসিভ ইউজার ইন্টারফেস তৈরি, এবং DevOps টুলস ব্যবহার করে ডিপ্লয়মেন্ট, সার্ভার ম্যানেজমেন্ট এবং কন্টিনিউয়াস ইন্টিগ্রেশন পরিচালনা করা।",
+
+        contact_title: "যোগাযোগ",
+        contact_desc:
+          "আমার সম্পর্কে কোনো তথ্য জানতে চাইলে আমার সাথে যোগাযোগ করুন",
+        contact_note:
+          "কাজ বা সহযোগিতার জন্য আপনি ইমেইল বা সোশ্যাল মিডিয়ার মাধ্যমে যোগাযোগ করতে পারেন।",
+
+        resume_text:
+          "আমার সিভি দেখতে বা ডাউনলোড করতে নিচে ক্লিক করুন... <br><br>",
+        resume_btn: "রিজিউম দেখুন",
+
+        projects_title: "প্রজেক্টসমূহ",
+        projects_text: "আমার প্রজেক্টগুলো দেখুন",
+        hero_prefix: "আমি একজন"
+      }
+    };
+
+    // ✅ Typed.js dynamic loader
+    function loadTypedText(lang) {
+      const roles = translations[lang].hero_roles;
+
+      if (typedInstance) {
+        typedInstance.destroy();
+      }
+
+      typedInstance = new Typed("#typed-text", {
+        strings: roles,
+        typeSpeed: 60,
+        backSpeed: 30,
+        loop: true
+      });
+    }
+
+    // ✅ Apply language
+    function applyLanguage(lang) {
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+
+        if (translations[lang][key]) {
+          el.innerHTML = translations[lang][key]; // ✅ supports HTML
+        }
+
+        // animation
+        el.classList.remove("lang-fade");
+        void el.offsetWidth;
+        el.classList.add("lang-fade");
+      });
+
+      // ✅ reload typed text
+      loadTypedText(lang);
+
+      // button text
+      const btn = document.getElementById("langToggle");
+      if (btn) {
+        btn.innerText = lang === "en" ? "বাংলা" : "English";
+      }
+
+      // save language
+      localStorage.setItem("siteLang", lang);
+
+      currentLang = lang;
+    }
+
+    // ✅ Toggle language
+    function toggleLanguage() {
+      const newLang = currentLang === "en" ? "bn" : "en";
+      applyLanguage(newLang);
+    }
+
+    // ✅ Load saved language
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedLang = localStorage.getItem("siteLang") || "en";
+      applyLanguage(savedLang);
+    });
+  </script>
 
 </body>
 
